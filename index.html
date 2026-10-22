@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Я в Агро — Агро-Колесо Фортуны</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo-group">
+        <span class="badge-rshb">РСХБ</span>
+        <div class="logo-text">
+          <span class="logo-title">Я в Агро</span>
+          <span class="logo-subtitle">Студенческая экосистема</span>
+        </div>
+      </div>
+      <div class="energy-pill">
+        <span class="energy-icon">⚡</span>
+        <span id="spins-left">Попыток: 1</span>
+      </div>
+    </header>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="main-card">
+      
+      <!-- SCREEN 1: START / ONBOARDING -->
+      <section id="screen-start" class="screen active">
+        <div class="hero-badge">Спецпроект для студентов 2026–2027</div>
+        <h1 class="hero-title">Крути Агро-Колесо — забирай бонусы! 🌾</h1>
+        <p class="hero-desc">
+          Испытай удачу всего за 30 секунд: гарантированные скидки, подписки и промокоды от ведущих агро-брендов и партнёров Россельхозбанка.
+        </p>
+
+        <div class="partners-preview">
+          <span class="partner-tag">🍃 Своё Родное (-20%)</span>
+          <span class="partner-tag">🚜 Ростсельмаш Shop</span>
+          <span class="partner-tag">📚 Агро-Книги</span>
+          <span class="partner-tag">☕ Coffee & Agro</span>
+        </div>
+
+        <div class="rules-card">
+          <div class="rule-item">
+            <span class="rule-num">1</span>
+            <span>Крути колесо фортуны в 1 клик</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-num">2</span>
+            <span>Получи гарантированный промокод</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-num">3</span>
+            <span>Скопируй и примени у партнёра</span>
+          </div>
+        </div>
+
+        <button id="btn-to-game" class="btn btn-primary btn-large glow-effect">
+          <span>Начать игру</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </button>
+      </section>
+
+      <!-- SCREEN 2: GAMEPLAY (WHEEL OF FORTUNE) -->
+      <section id="screen-game" class="screen">
+        <div class="game-instruction">
+          <h2>Испытай удачу!</h2>
+          <p>Нажми кнопку «Крутить» и узнай, какой подарок приготовили агро-партнёры</p>
+        </div>
+
+        <div class="wheel-stage">
+          <div class="wheel-pointer">▼</div>
+          <div class="wheel-outer-glow"></div>
+          <canvas id="wheel-canvas" width="380" height="380"></canvas>
+          <div class="wheel-center-pin">
+            <span>Я</span>
+          </div>
+        </div>
+
+        <button id="btn-spin" class="btn btn-primary btn-large">
+          <span id="spin-btn-text">Крутить колесо! 🎯</span>
+        </button>
+      </section>
+
+      <!-- SCREEN 3: WIN / REWARD MODAL / SCREEN -->
+      <section id="screen-reward" class="screen">
+        <div class="reward-sparkles">🎉</div>
+        <div class="reward-header">
+          <span class="reward-tag">Победа! Твой приз</span>
+          <h2 id="reward-title">Скидка 20% на «Своё Родное»</h2>
+          <p id="reward-desc">Свежие фермерские сыры, мёд и ягоды с доставкой</p>
+        </div>
+
+        <div class="promo-box">
+          <div class="promo-meta">
+            <span class="promo-partner" id="reward-partner">Партнёр: Своё Родное</span>
+            <span class="promo-exp" id="reward-exp">Действует до 30.11.2026</span>
+          </div>
+          <div class="promo-code-row">
+            <input type="text" id="promo-code-input" readonly value="AGRO-STUDENT-2026">
+            <button id="btn-copy-code" class="btn btn-secondary">
+              <span id="copy-text">Скопировать</span>
+            </button>
+          </div>
+          <div id="copy-toast" class="copy-toast">Промокод скопирован в буфер! ✅</div>
+        </div>
+
+        <div class="action-buttons">
+          <a id="partner-link-btn" href="https://svoe-rodnoe.ru" target="_blank" rel="noopener" class="btn btn-primary btn-large">
+            <span>Перейти к партнёру</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
+          <button id="btn-play-again" class="btn btn-outline">
+            <span>Крутить ещё раз</span>
+          </button>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer info -->
+    <footer class="app-footer">
+      <p>© 2026 АО «Россельхозбанк». Экосистема «Я в Агро» для студентов и молодых специалистов.</p>
+      <div class="footer-links">
+        <a href="https://svoe-agro.ru" target="_blank">Платформа «Я в Агро»</a>
+        <a href="https://rshbdigital.ru" target="_blank">РСХБ.Цифра</a>
+      </div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
