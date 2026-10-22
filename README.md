@@ -63,10 +63,21 @@
 
 ## 🚀 5. Как запустить
 
-Проект полностью автономен и не требует сборщиков:
-1. Откройте файл `index.html` в любом современном браузере (Chrome, Edge, Safari, Firefox).
-2. Или запустите локальный сервер:
+Проект полностью автономен и не требует сторонних зависимостей:
+1. **Самый простой способ (без сервера)**:  
+   Просто дважды кликните по файлу `index.html` в проводнике Windows — игра мгновенно откроется и будет работать прямо из файла.
+2. **Через локальный сервер**:
    ```bash
-   python -m http.server 8080
+   py -m http.server 3000
    ```
-   и перейдите по адресу `http://localhost:8080`.
+   Затем перейдите в браузере по адресу: `http://localhost:3000`
+3. **Демонстрация онлайн (GitHub Pages)**:  
+   [https://relaxedtuna5.github.io/rshb-agro-wheel/](https://relaxedtuna5.github.io/rshb-agro-wheel/)
+
+---
+
+## 🔗 6. Ссылки и репозиторий
+
+- **GitHub репозиторий**: [https://github.com/RelaxedTuna5/rshb-agro-wheel](https://github.com/RelaxedTuna5/rshb-agro-wheel)
+- **Живой запуск (GitHub Pages)**: [https://relaxedtuna5.github.io/rshb-agro-wheel/](https://relaxedtuna5.github.io/rshb-agro-wheel/)
+- **Стипендиальная программа РСХБ**: продукт «Я в Агро», кейс «Мини-игра для получения промокодов».
